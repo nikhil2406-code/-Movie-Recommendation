@@ -7,8 +7,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import streamlit as st
 
 # Load data
-movies = pd.read_csv('tmdb_5000_movies.csv')
-credits = pd.read_csv('tmdb_5000_credits.csv')
+movies = pd.read_csv('tmdb_5000_movies.csv.gz', compression='gzip')
+credits = pd.read_csv('tmdb_5000_credits.csv.gz', compression='gzip')
+
 
 movies = movies.merge(credits, left_on='title', right_on='title')
 movies = movies[['movie_id', 'title', 'overview', 'genres', 'keywords', 'cast', 'crew']]
